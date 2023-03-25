@@ -1,17 +1,15 @@
 #!/bin/bash
-# NOTE : Quote it else use array to avoid problems #
-FILES="./json/*"
+
+set -euo pipefail
+
+FILES="./json/*.json"
+
+# Blank out the file so no duplicate data
+true > ./testing.txt
+
 for f in $FILES
 do
-  # echo "Processing $f file..."
-  # take action on each file. $f store current file name
-  # jq '.download,.upload,.ping,.timestamp' $f >> ./speedtest.txt
-  jq 'keys' '.download' "$f" >> ./testing.txt
-  jq  '{download: .download, upload: .upload, ping: .ping, timestamp: .timestamp}' "$f" >> ./testing.txt
-  jq  '{download: .download, upload: .upload, ping: .ping, timestamp: .timestamp}' "$f" >> ./testing.txt
-  jq  '{download: .download, upload: .upload, ping: .ping, timestamp: .timestamp}' "$f" >> ./testing.txt
-  jq  '{download: .download, upload: .upload, ping: .ping, timestamp: .timestamp}' "$f" >> ./testing.txt
-  jq  '{download: .download, upload: .upload, ping: .ping, timestamp: .timestamp}' "$f" >> ./testing.txt
-  jq  '{download: .download, upload: .upload, ping: .ping, timestamp: .timestamp}' "$f" >> ./testing.txt
-  jq  '{download: .download, upload: .upload, ping: .ping, timestamp: .timestamp}' "$f" >> ./testing.txt
+  cat < "$f" | jq -r 'keys[] as $k | "\($k): \(.[$k])"' >> ./testing.txt
 done
+
+echo "all done :)"
