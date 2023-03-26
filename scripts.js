@@ -10,8 +10,10 @@ function loadFile() {
 }
 
 function renderTable() {
+  cleanTable();
   const csv = loadFile().split("\n");
   const head = "tableHead";
+  const head2 = "tableHeadTwo";
   const body = "tableBody";
   // Append first row in csv array to table id contents
   createTableRow(
@@ -27,11 +29,29 @@ function renderTable() {
   }
 }
 
+function cleanTable() {
+  document.getElementById("tableHead").innerHTML = "";
+  document.getElementById("tableBody").innerHTML = "";
+}
+
 function createTableRow(array, elementId) {
   var tBody = document.getElementById(elementId);
   var row = tBody.insertRow(0);
   for (var i = 0; i < array.length; i++) {
+    if (i % 6 == 0 || i % 6 == 1) {
+      const bytes = parseInt(array[i]);
+      if (bytes > 0) {
+        array[i] = bytesToMbs(bytes) + " MBps";
+      }
+    }
+    if (i % 6 == 2) {
+      array[i] += " ms";
+    }
     var cell = row.insertCell(i);
     cell.innerHTML = array[i];
   }
+}
+
+function bytesToMbs(bytes) {
+  return (bytes / 1024 / 1024).toFixed(2);
 }

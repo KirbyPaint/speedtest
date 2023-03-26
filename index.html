@@ -9,11 +9,22 @@
     <title>Free Utility - Comcast Karma</title>
   </head>
   <body onload="renderTable()">
-    <div id="contents">
+    Speedtest.net CLI visualizer:
+    <div id="tableContents">
       <table id="mainTable">
         <!-- JS will insert -->
         <thead id="tableHead"></thead>
         <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+    <div>
+      <button onclick="renderTable()">Refresh</button>
+    </div>
+    <div>
+      Stats:
+      <table id="mainTable">
+        <!-- JS will insert -->
+        <thead id="tableHeadTwo"></thead>
       </table>
     </div>
   </body>
