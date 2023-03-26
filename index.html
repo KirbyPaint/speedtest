@@ -10,21 +10,56 @@
   </head>
   <body onload="renderTable()">
     Speedtest.net CLI visualizer:
+    <div>
+      Stats:
+      <table id="statsTable">
+        <tr>
+          <th></th>
+          <th>Download</th>
+          <th>Upload</th>
+          <th>Ping</th>
+          <th>Sent</th>
+          <th>Received</th>
+        </tr>
+        <tr>
+          <td>Sum</td>
+          <td id="sum_download">Download</td>
+          <td id="sum_upload">Upload</td>
+          <td id="sum_ping">Ping</td>
+          <td id="sum_sent">Sent</td>
+          <td id="sum_received">Received</td>
+        </tr>
+        <tr>
+          <td>Avg</td>
+          <td id="avg_download">Download</td>
+          <td id="avg_upload">Upload</td>
+          <td id="avg_ping">Ping</td>
+          <td id="avg_sent">Sent</td>
+          <td id="avg_received">Received</td>
+        </tr>
+        <tr>
+          <td>Max</td>
+          <td id="max_download">Download</td>
+          <td id="max_upload">Upload</td>
+          <td id="max_ping">Ping</td>
+          <td id="max_sent">Sent</td>
+          <td id="max_received">Received</td>
+        </tr>
+        <tr>
+          <td>Min</td>
+          <td id="min_download">Download</td>
+          <td id="min_upload">Upload</td>
+          <td id="min_ping">Ping</td>
+          <td id="min_sent">Sent</td>
+          <td id="min_received">Received</td>
+        </tr>
+      </table>
+    </div>
     <div id="tableContents">
       <table id="mainTable">
         <!-- JS will insert -->
         <thead id="tableHead"></thead>
         <tbody id="tableBody"></tbody>
-      </table>
-    </div>
-    <div>
-      <button onclick="renderTable()">Refresh</button>
-    </div>
-    <div>
-      Stats:
-      <table id="mainTable">
-        <!-- JS will insert -->
-        <thead id="tableHeadTwo"></thead>
       </table>
     </div>
   </body>
