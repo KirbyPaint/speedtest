@@ -145,26 +145,3 @@ function createTableRow(array, elementId) {
 function bytesToMbs(bytes) {
   return (bytes / 1024 / 1024).toFixed(2);
 }
-
-function averageDownloadSpeed() {
-  const csv = loadFile()
-    .split("\n")
-    .filter((n) => n);
-  console.log({ csv });
-  let sum = 0;
-  let count = 0;
-  for (let i = 1; i < csv.length; i++) {
-    const bytes = parseFloat(csv[i].split(",")[0]);
-    console.log({ bytes });
-    if (bytes > 0 && !isNaN(bytes)) {
-      sum += bytes;
-      count++;
-    }
-  }
-  return bytesToMbs(sum / count);
-}
-
-function sum(items, rowId) {
-  console.log({ items });
-  console.log({ rowId });
-}
