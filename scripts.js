@@ -48,15 +48,19 @@ function getCsvColumn(columnNumber) {
 function math() {
   // Sums
   const downloadSum = getCsvColumn(0).reduce(
-    (a, b) => parseInt(a) + parseInt(b)
+    (a, b) => parseFloat(a) + parseFloat(b)
   );
-  const uploadSum = getCsvColumn(1).reduce((a, b) => parseInt(a) + parseInt(b));
-  const pingSum = getCsvColumn(2).reduce((a, b) => parseInt(a) + parseInt(b));
+  const uploadSum = getCsvColumn(1).reduce(
+    (a, b) => parseFloat(a) + parseFloat(b)
+  );
+  const pingSum = getCsvColumn(2).reduce(
+    (a, b) => parseFloat(a) + parseFloat(b)
+  );
   const bytesSentSum = getCsvColumn(4).reduce(
-    (a, b) => parseInt(a) + parseInt(b)
+    (a, b) => parseFloat(a) + parseFloat(b)
   );
   const bytesReceivedSum = getCsvColumn(5).reduce(
-    (a, b) => parseInt(a) + parseInt(b)
+    (a, b) => parseFloat(a) + parseFloat(b)
   );
   // Averages
   const downloadAverage = downloadSum / getCsvColumn(0).length;
@@ -108,14 +112,14 @@ function createTableRow(array, elementId) {
   for (var i = 0; i < array.length; i++) {
     // download
     if (i % 6 === 0) {
-      const bytes = parseInt(array[i]);
+      const bytes = parseFloat(array[i]);
       if (bytes > 0) {
         array[i] = bytesToMbs(bytes) + " MBps";
       }
     }
     // upload
     if (i % 6 === 1) {
-      const bytes = parseInt(array[i]);
+      const bytes = parseFloat(array[i]);
       if (bytes > 0) {
         array[i] = bytesToMbs(bytes) + " MBps";
       }
@@ -150,7 +154,7 @@ function averageDownloadSpeed() {
   let sum = 0;
   let count = 0;
   for (let i = 1; i < csv.length; i++) {
-    const bytes = parseInt(csv[i].split(",")[0]);
+    const bytes = parseFloat(csv[i].split(",")[0]);
     console.log({ bytes });
     if (bytes > 0 && !isNaN(bytes)) {
       sum += bytes;
