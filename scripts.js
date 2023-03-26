@@ -125,10 +125,10 @@ function math() {
 }
 
 function createTableRow(array, elementId) {
-  var tBody = document.getElementById(elementId);
-  var row = tBody.insertRow(0);
-  for (var i = 0; i < array.length; i++) {
-    var cell = row.insertCell(i);
+  const tBody = document.getElementById(elementId);
+  const row = tBody.insertRow(0);
+  for (let i = 0; i < array.length; i++) {
+    const cell = row.insertCell(i);
     cell.innerHTML = array[i];
   }
 }
