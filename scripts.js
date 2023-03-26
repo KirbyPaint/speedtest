@@ -81,62 +81,53 @@ function math() {
   const bytesSentMin = Math.min(...getCsvColumn(4));
   const bytesReceivedMin = Math.min(...getCsvColumn(5));
   // Display
+  // Download
   document.getElementById("sum_download").innerHTML =
-    bytesToMbs(downloadSum) + " MBps";
-  document.getElementById("sum_upload").innerHTML =
-    bytesToMbs(uploadSum) + " MBps";
-  document.getElementById("sum_ping").innerHTML = pingSum;
-  document.getElementById("sum_sent").innerHTML = bytesSentSum;
-  document.getElementById("sum_received").innerHTML = bytesReceivedSum;
+    bytesToMbs(downloadSum) + " MB";
   document.getElementById("avg_download").innerHTML =
-    bytesToMbs(downloadAverage);
-  document.getElementById("avg_upload").innerHTML = bytesToMbs(uploadAverage);
-  document.getElementById("avg_ping").innerHTML = pingAverage;
-  document.getElementById("avg_sent").innerHTML = bytesSentAverage;
-  document.getElementById("avg_received").innerHTML = bytesReceivedAverage;
-  document.getElementById("max_download").innerHTML = bytesToMbs(downloadMax);
-  document.getElementById("max_upload").innerHTML = bytesToMbs(uploadMax);
-  document.getElementById("max_ping").innerHTML = pingMax;
-  document.getElementById("max_sent").innerHTML = bytesSentMax;
-  document.getElementById("max_received").innerHTML = bytesReceivedMax;
-  document.getElementById("min_download").innerHTML = bytesToMbs(downloadMin);
-  document.getElementById("min_upload").innerHTML = bytesToMbs(uploadMin);
-  document.getElementById("min_ping").innerHTML = pingMin;
-  document.getElementById("min_sent").innerHTML = bytesSentMin;
-  document.getElementById("min_received").innerHTML = bytesReceivedMin;
+    bytesToMbs(downloadAverage) + " MBps";
+  document.getElementById("max_download").innerHTML =
+    bytesToMbs(downloadMax) + " MBps";
+  document.getElementById("min_download").innerHTML =
+    bytesToMbs(downloadMin) + " MBps";
+  // Upload
+  document.getElementById("sum_upload").innerHTML =
+    bytesToMbs(uploadSum) + " MB";
+  document.getElementById("avg_upload").innerHTML =
+    bytesToMbs(uploadAverage) + " MBps";
+  document.getElementById("max_upload").innerHTML =
+    bytesToMbs(uploadMax) + " MBps";
+  document.getElementById("min_upload").innerHTML =
+    bytesToMbs(uploadMin) + " MBps";
+  // Ping
+  document.getElementById("sum_ping").innerHTML = pingSum + " ms";
+  document.getElementById("avg_ping").innerHTML = round(pingAverage) + " ms";
+  document.getElementById("max_ping").innerHTML = pingMax + " ms";
+  document.getElementById("min_ping").innerHTML = pingMin + " ms";
+  // Sent
+  document.getElementById("sum_sent").innerHTML =
+    bytesToMbs(bytesSentSum) + " MB";
+  document.getElementById("avg_sent").innerHTML =
+    bytesToMbs(bytesSentAverage) + " MB";
+  document.getElementById("max_sent").innerHTML =
+    bytesToMbs(bytesSentMax) + " MB";
+  document.getElementById("min_sent").innerHTML =
+    bytesToMbs(bytesSentMin) + " MB";
+  // Received
+  document.getElementById("sum_received").innerHTML =
+    bytesToMbs(bytesReceivedSum) + " MB";
+  document.getElementById("avg_received").innerHTML =
+    bytesToMbs(bytesReceivedAverage) + " MB";
+  document.getElementById("max_received").innerHTML =
+    bytesToMbs(bytesReceivedMax) + " MB";
+  document.getElementById("min_received").innerHTML =
+    bytesToMbs(bytesReceivedMin) + " MB";
 }
 
 function createTableRow(array, elementId) {
   var tBody = document.getElementById(elementId);
   var row = tBody.insertRow(0);
   for (var i = 0; i < array.length; i++) {
-    // download
-    if (i % 6 === 0) {
-      const bytes = parseFloat(array[i]);
-      if (bytes > 0) {
-        array[i] = bytesToMbs(bytes) + " MBps";
-      }
-    }
-    // upload
-    if (i % 6 === 1) {
-      const bytes = parseFloat(array[i]);
-      if (bytes > 0) {
-        array[i] = bytesToMbs(bytes) + " MBps";
-      }
-    }
-    // ping
-    if (i % 6 === 2) {
-      array[i] += " ms";
-    }
-    // timestamp
-    if (i % 6 === 3) {
-    }
-    // bytes sent
-    if (i % 6 === 4) {
-    }
-    // bytes received
-    if (i % 6 === 5) {
-    }
     var cell = row.insertCell(i);
     cell.innerHTML = array[i];
   }
@@ -144,4 +135,8 @@ function createTableRow(array, elementId) {
 
 function bytesToMbs(bytes) {
   return (bytes / 1024 / 1024).toFixed(2);
+}
+
+function round(num) {
+  return Math.round((num + Number.EPSILON) * 100) / 100;
 }
