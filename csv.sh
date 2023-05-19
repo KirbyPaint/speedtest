@@ -16,5 +16,5 @@ do
     headers=true
   fi
   # Get values for each key and turn into a comma-separated list
-  cat < "$f" | jq -r 'del(.server,.client) | . | join(",")' >> ./speedtest.csv
+  cat < "$f" | jq -r 'del(.server,.client) | . | join(",")' | rev | cut -c2- | rev >> ./speedtest.csv
 done
