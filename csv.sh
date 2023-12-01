@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-files="./json/*.json"
+files="/home/plex/Documents/speedtest/json/*.json"
 headers=false
 
 # Blank out the file so no duplicate data
