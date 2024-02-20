@@ -8,6 +8,8 @@ headers=false
 # Blank out the file so no duplicate data
 true > ./speedtest.csv
 
+cd "/home/plex/Documents/speedtest/"
+
 for f in $files
 do
   if [ "$headers" = false ]; then
